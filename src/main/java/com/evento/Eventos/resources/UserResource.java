@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.Objects.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -31,5 +34,15 @@ public class UserResource {
     @PostMapping("/")
     public ResponseEntity<UserDTO> criarUsuario(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.saveUser(userDTO));
+    }
+
+    @PutMapping()
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.updateUser(userDTO));
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<void> deleteUser(@PathVariable Long id) {
+        return ResponseEntity.ok().build();
     }
 }

@@ -4,7 +4,10 @@ import com.evento.Eventos.dtos.UserDTO;
 import com.evento.Eventos.models.User;
 import com.evento.Eventos.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import static java.util.Objects.isNull;
 
 @Service
 public class UserService {
@@ -57,5 +60,20 @@ public class UserService {
     public UserDTO getUserByEmail(String email) {
         return changeUserToUserDTO(userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("User not found")));
+    }
+
+    public UserDTO updateUser(UserDTO userDTO) {
+        if (isNull(userDTO.getId())) {
+            throw new IllegalArgumentException("Id não pode ser nulo");
+        }
+        User user = userRepository.findById(userDTO.getId())
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Usuário não encontrado"));
+        user = new User(userDTO);
+        userRepository.save(user);
+        return new UserDTO(user);
+    }
+
+    public void deleteUser(Long id) {
     }
 }
