@@ -1,25 +1,35 @@
 package com.evento.Eventos.models;
 
 import com.evento.Eventos.dtos.UserDTO;
+import com.evento.Eventos.enums.Profile;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(unique = true)
     private String email;
     private String password;
+
+    @Column(unique = true)
     private String cpf;
+
+    @Column(name = "birth_date")
     private LocalDate birthDate;
-    private String profile;
     private boolean verified;
+
+    @Enumerated(EnumType.STRING)
+    private List<Profile> profiles;
 
     public User() {}
 
@@ -30,8 +40,8 @@ public class User {
         this.password = userDTO.getPassword();
         this.cpf = userDTO.getCpf();
         this.birthDate = userDTO.getBirthDate();
-        this.profile = userDTO.getProfile();
         this.verified = userDTO.isVerified();
+        this.profiles = userDTO.getProfiles();
     }
 
     public Long getId() {
@@ -82,20 +92,20 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String perfil) {
-        this.profile = perfil;
-    }
-
     public boolean getVerified() {
         return verified;
     }
 
     public void setVerified(Boolean verified) {
         verified = verified;
+    }
+
+    public List<Profile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
     }
 
     @Override

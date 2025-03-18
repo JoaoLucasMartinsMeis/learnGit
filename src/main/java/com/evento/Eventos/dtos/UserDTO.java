@@ -1,7 +1,9 @@
 package com.evento.Eventos.dtos;
 
+import com.evento.Eventos.enums.Profile;
 import com.evento.Eventos.models.User;
 import java.time.LocalDate;
+import java.util.List;
 
 public class UserDTO {
 
@@ -13,6 +15,7 @@ public class UserDTO {
     private LocalDate birthDate;
     private String profile;
     private boolean verified;
+    private List<Profile> profiles;
 
     public UserDTO() {}
 
@@ -23,8 +26,8 @@ public class UserDTO {
         this.password = user.getPassword();
         this.cpf = user.getCpf();
         this.birthDate = user.getBirthDate();
-        this.profile = user.getProfile();
         this.verified = user.getVerified();
+        this.profiles = user.getProfiles();
     }
 
     public Long getId() {
@@ -69,17 +72,17 @@ public class UserDTO {
         this.birthDate = birthDate;
     }
 
-    public String getProfile() {
-        return profile;
-    }
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
     public boolean isVerified() {
         return verified;
     }
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public List<Profile> getProfiles() {
+        return profiles;
+    }
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
     }
 }

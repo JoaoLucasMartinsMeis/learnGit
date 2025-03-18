@@ -32,7 +32,7 @@ public class UserResource {
     }
 
     @PostMapping("/")
-    public ResponseEntity<UserDTO> criarUsuario(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.saveUser(userDTO));
     }
 
@@ -42,7 +42,8 @@ public class UserResource {
     }
 
     @DeleteMapping()
-    public ResponseEntity<void> deleteUser(@PathVariable Long id) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> deleteUser(@RequestBody UserDTO userDTO) {
+        userService.deleteUser(userDTO.getId());
+        return ResponseEntity.noContent().build();
     }
 }
