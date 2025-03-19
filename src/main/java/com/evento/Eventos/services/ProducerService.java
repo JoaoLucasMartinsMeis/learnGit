@@ -26,7 +26,7 @@ public class ProducerService {
                         new IllegalArgumentException("Producer not found"));
     }
 
-    public ProducerDTO getProducerByNome(String nome) {
+    public ProducerDTO getProducerByName(String nome) {
         return convertProducerToProducerDTO(producerRepository.findByNome(nome)
                 .orElseThrow(() ->
                         new IllegalArgumentException("Producer not found")));
@@ -54,7 +54,7 @@ public class ProducerService {
         producerRepository.deleteById(id);
     }
 
-    private Producer convertProducerDTOToProducer(ProducerDTO producerDTO) {
+    public Producer convertProducerDTOToProducer(ProducerDTO producerDTO) {
         Producer producer = new Producer();
         producer.setId(producerDTO.getId());
         producer.setNome(producerDTO.getNome());
@@ -62,7 +62,7 @@ public class ProducerService {
         return producer;
     }
 
-    private ProducerDTO convertProducerToProducerDTO(Producer producer) {
+    public ProducerDTO convertProducerToProducerDTO(Producer producer) {
         ProducerDTO producerDTO = new ProducerDTO();
         producerDTO.setId(producer.getId());
         producerDTO.setNome(producer.getNome());
