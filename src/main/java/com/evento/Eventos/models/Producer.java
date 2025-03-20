@@ -10,16 +10,16 @@ public class Producer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String name;
 
     @Column(name = "cpf_cnpj", unique = true)
     private String cpfCnpj;
 
     public Producer() {}
 
-    public Producer(Long id, String nome, String cpfCnpj) {
+    public Producer(Long id, String name, String cpfCnpj) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.cpfCnpj = cpfCnpj;
     }
 
@@ -31,12 +31,12 @@ public class Producer {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpfCnpj() {
@@ -51,12 +51,12 @@ public class Producer {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Producer produtora = (Producer) o;
-        return Objects.equals(id, produtora.id) && Objects.equals(nome, produtora.nome) && Objects.equals(cpfCnpj, produtora.cpfCnpj);
+        return Objects.equals(id, produtora.id) && Objects.equals(name, produtora.name) && Objects.equals(cpfCnpj, produtora.cpfCnpj);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, cpfCnpj);
+        return Objects.hash(id, name, cpfCnpj);
     }
 }
 

@@ -1,10 +1,8 @@
 package com.evento.Eventos.dtos;
 
-import jakarta.persistence.Column;
-
 public class ProducerDTO {
     private Long id;
-    private String nome;
+    private String name;
     private String cpfCnpj;
 
     public ProducerDTO() {}
@@ -16,11 +14,11 @@ public class ProducerDTO {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpfCnpj() {
